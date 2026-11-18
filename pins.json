@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "plugin": {
+    "repo": "kvoon3/x18n.nvim",
+    "commit": "2b4445d5a78000a327258b57cd9cc3c75e8a34b4"
+  },
+  "unkernel": {
+    "repo": "kvoon3/unkernel",
+    "commit": "3fd7021dc95138216f3c2ae1471bcedacce783a9",
+    "pnpm": "12.14.0"
+  },
+  "kernel": {
+    "release": "v0.1.0-261115-26d0873",
+    "sha256": "38ad4670c178ac2556973dbf84625b684d04a073856a0730637c71107b454643"
+  },
+  "alpine": {
+    "release": "v3.24",
+    "arch": "riscv64",
+    "mirrors": ["https://dl-cdn.alpinelinux.org/alpine"]
+  }
+}

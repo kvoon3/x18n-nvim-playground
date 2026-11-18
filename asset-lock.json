@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "inputsSha256": "c614f76ff174b0897a25e4ba82746a3fb44fef8869e0b2ec92daedf8d77525b5",
+  "lspVersion": "0.1.13",
+  "alpine": {
+    "release": "v3.24",
+    "arch": "riscv64",
+    "packages": [
+      {
+        "fileName": "ada-libs-4.0.0-r0.apk",
+        "repo": "main",
+        "bytes": 231672,
+        "sha256": "c367fa19cd15c58a43d5f7fe4a201cebd0ec54015116cf296b103cf900c8194e"
+      },
+      {
+        "fileName": "brotli-libs-1.2.1-r0.apk",
+        "repo": "main",
+        "bytes": 461982,
+        "sha256": "d11f8030094bb25b917c1be0063bb4ec76eb2f7ae63d1af7faebc9588004fd73"
+      },
+      {
+        "fileName": "busybox-1.37.0-r31.apk",
+        "repo": "main",
+        "bytes": 542362,
+        "sha256": "6bc9af4835cea09ae6501d6473d3185ec65244a1b333a891aa88ff7eb5506936"
+      },
+      {
+        "fileName": "busybox-binsh-1.37.0-r31.apk",
+        "repo": "main",
+        "bytes": 1302,
+        "sha256": "b6058ce3f1b5284bc7ea1896eb486866067aed6a10f8472c4236ab91ba5f2049"
+      },
+      {
+        "fileName": "c-ares-1.34.9-r0.apk",
+        "repo": "main",
+        "bytes": 118052,
+        "sha256": "57626f69b45782a3faf8f711c85a70df247ed57831542cab93eddab948cad547"
+      },
+      {
+        "fileName": "ca-certificates-20261020-r0.apk",
+        "repo": "main",
+        "bytes": 129534,
+        "sha256": "6213440d2a421355f4a1a01e0c496a64292180a8ae5c53d9aed11c94c19058cd"
+      },
+      {
+        "fileName": "icu-data-en-78.1-r0.apk",
+        "repo": "main",
+        "bytes": 1025570,
+        "sha256": "f3cc2162383b5ccd659a3b483dac9872ce719f2c2b1efb6c849b6fa34489bbf6"
+      },
+      {
+        "fileName": "icu-libs-78.1-r0.apk",
+        "repo": "main",
+        "bytes": 1997401,
+        "sha256": "69fe605744b3e36a6495ec85ce8ca642642a01a16218d5bd0014ab43b6288dfa"
+      },
+      {
+        "fileName": "libcrypto3-3.5.9-r0.apk",
+        "repo": "main",
+        "bytes": 1657630,
+        "sha256": "c6d54d429a4edf7d08904be26c7ed6f4d5509f367b84f16982ec99aff26c1925"
+      },
+      {
+        "fileName": "libgcc-15.2.0-r5.apk",
+        "repo": "main",
+        "bytes": 69815,
+        "sha256": "cff2a42ccdec635c115ccafb5efabf2b7c836df6a8eff133b63b98cd7c295cfa"
+      },
+      {
+        "fileName": "libintl-1.0-r0.apk",
+        "repo": "main",
+        "bytes": 42800,
+        "sha256": "6643fe924b972af1d1a9f2d60e2a9144ddd082a24fd1147834efa3191042450b"
+      },
+      {
+        "fileName": "libluv-1.51.0.1-r1.apk",
+        "repo": "community",
+        "bytes": 61447,
+        "sha256": "eff7d8cd4025841dff8cae53ee868d613f7eb9ce72a267778fddd02637ca55e5"
+      },
+      {
+        "fileName": "libssl3-3.5.9-r0.apk",
+        "repo": "main",
+        "bytes": 386618,
+        "sha256": "3271613a205fea23db94fd26a50c489ca75cf7534d0dc6319f61c3db5aff564d"
+      },
+      {
+        "fileName": "libstdc++-15.2.0-r5.apk",
+        "repo": "main",
+        "bytes": 947522,
+        "sha256": "dd2fe67cc1a9dd0e69bc1b6f7e51f699419c1073f105f740fa71f3ee502c2daf"
+      },
+      {
+        "fileName": "libuv-1.52.1-r0.apk",
+        "repo": "main",
+        "bytes": 97057,
+        "sha256": "21f9f8a10c2ee4e9949f892f5d9ba2f9e0f27370c6acc92c77a99d84818c72e3"
+      },
+      {
+        "fileName": "lua5.1-5.1.5-r13.apk",
+        "repo": "main",
+        "bytes": 56585,
+        "sha256": "a666be01669f76de112abcd8f5bb971f8173fda884b0f82390eb30742757af76"
+      },
+      {
+        "fileName": "lua5.1-libs-5.1.5-r13.apk",
+        "repo": "main",
+        "bytes": 75125,
+        "sha256": "88df96e780ed2539c822e55cc59c144e4e21028a0e1169f5446235f1f06de5c2"
+      },
+      {
+        "fileName": "lua5.1-lpeg-1.1.0-r1.apk",
+        "repo": "community",
+        "bytes": 26973,
+        "sha256": "80f153a7359922a189c4379bff65807d620685bb2aa048ab07e847e9432901cc"
+      },
+      {
+        "fileName": "musl-1.2.6-r3.apk",
+        "repo": "main",
+        "bytes": 431255,
+        "sha256": "f21b18f22a511de1e57f70112f761d0daad0c7d74e0734a82fcd5e037387dbb4"
+      },
+      {
+        "fileName": "neovim-0.12.2-r0.apk",
+        "repo": "community",
+        "bytes": 6198803,
+        "sha256": "3a01c2cdd011a9df8e8d1fb1f6360a9097725dd2eddbad449f90f121750bfbc5"
+      },
+      {
+        "fileName": "nghttp2-libs-1.70.0-r0.apk",
+        "repo": "main",
+        "bytes": 64360,
+        "sha256": "af2fd97dd2b3c8625917ff84a02536e3940e66cff88b09727df299e4ae4f52b3"
+      },
+      {
+        "fileName": "nodejs-24.22.3-r0.apk",
+        "repo": "main",
+        "bytes": 18627106,
+        "sha256": "1e3e85470b17d2e688178791710d690da99eed2308a5fbab52ebb9c2fb35ecb0"
+      },
+      {
+        "fileName": "simdjson-4.2.4-r0.apk",
+        "repo": "main",
+        "bytes": 50001,
+        "sha256": "4c47ee0191d9e14745b5c506dc9b0f407119fdc987e9e91aec647563fa5127d1"
+      },
+      {
+        "fileName": "simdutf-9.0.0-r0.apk",
+        "repo": "main",
+        "bytes": 59273,
+        "sha256": "d59cb4b540366560e23ecff3bc20d9e280df9abb417d10ac40abadc087fd880b"
+      },
+      {
+        "fileName": "sqlite-libs-3.53.4-r0.apk",
+        "repo": "main",
+        "bytes": 840119,
+        "sha256": "ac748dbb847fa2445be0897502466302980ab9bb122ae6eab79a5328dd482121"
+      },
+      {
+        "fileName": "ssl_client-1.37.0-r31.apk",
+        "repo": "main",
+        "bytes": 4464,
+        "sha256": "b2b808662dab12fdfcfbe785eed7899be4e4dd32e060acbfd666656a05bd2bfa"
+      },
+      {
+        "fileName": "tree-sitter-0.26.7-r0.apk",
+        "repo": "community",
+        "bytes": 77900,
+        "sha256": "ec1aa0c718832b3e4069f80a1d4e13d1fdbd2cf4612146e7061d9ba1db1abf2b"
+      },
+      {
+        "fileName": "tree-sitter-c-0.24.1-r0.apk",
+        "repo": "community",
+        "bytes": 81234,
+        "sha256": "f80a4ddc1b54d753ec472b7eb566de58ffb613ec6127895afe7811893573a75c"
+      },
+      {
+        "fileName": "tree-sitter-lua-0.5.0-r0.apk",
+        "repo": "community",
+        "bytes": 17958,
+        "sha256": "04beb3ffcc2f4f950c979a37de451e2310cccfb2ca5cc7fe3c043d1d238ef7d9"
+      },
+      {
+        "fileName": "tree-sitter-markdown-0.5.3-r0.apk",
+        "repo": "community",
+        "bytes": 161736,
+        "sha256": "6796cf2aeb2a4615805df230637a8e57b45e6b890dcba5ff83814cfbac9cc478"
+      },
+      {
+        "fileName": "tree-sitter-query-0.8.0-r0.apk",
+        "repo": "community",
+        "bytes": 8246,
+        "sha256": "9b5c2c3b1a0af7ec8c8f78f6a8df97e7fde4b3a626d2fabea15a3061e92ab7ba"
+      },
+      {
+        "fileName": "tree-sitter-vim-0.8.1-r0.apk",
+        "repo": "community",
+        "bytes": 196158,
+        "sha256": "7b3daa309f16b57d6cec8a2e03287bcdedbf0621b6847f059df259a66f100488"
+      },
+      {
+        "fileName": "tree-sitter-vimdoc-4.1.0-r0.apk",
+        "repo": "community",
+        "bytes": 39620,
+        "sha256": "baa0a1ed48f457c7a1b6af937f892be76502d77c8a3fdfbdd6d51b253af53404"
+      },
+      {
+        "fileName": "unibilium-2.1.2-r0.apk",
+        "repo": "community",
+        "bytes": 23536,
+        "sha256": "cb7fecd219e0ab75fa252081c681d13310cf3ab7f712068bc4e0411ad2606059"
+      },
+      {
+        "fileName": "utf8proc-2.11.3-r0.apk",
+        "repo": "community",
+        "bytes": 83743,
+        "sha256": "442ef6564dba0b580a4b1a4f2d7227be7605ac91999173ec0bd0dd1d09e4feb0"
+      },
+      {
+        "fileName": "zlib-1.4-r0.apk",
+        "repo": "main",
+        "bytes": 52332,
+        "sha256": "066be0a62cb512c3bebbe87165d93e909e1237efb7ceb4424ac30e28b032a6dc"
+      },
+      {
+        "fileName": "zstd-libs-1.5.7-r2.apk",
+        "repo": "main",
+        "bytes": 453654,
+        "sha256": "6d1b83640dae191c1efb34cbef49fafe6eda507c49232efa4948c8dfad4eab87"
+      }
+    ]
+  },
+  "tarballs": [
+    {
+      "kind": "apk-nodejs",
+      "fileName": "nodejs-apk.tar.gz",
+      "guestName": "nodejs-apk.tar.gz",
+      "bytes": 18556116,
+      "sha256": "a197056a82495e888bab4008e10c2f5785164d019b5f146b74a26786b6e61968",
+      "members": [
+        "nodejs-24.22.3-r0.apk"
+      ]
+    },
+    {
+      "kind": "apk-rest",
+      "fileName": "apk-repo-rest.tar.gz",
+      "guestName": "apk-repo-rest.tar.gz",
+      "bytes": 16631095,
+      "sha256": "1376902ecdef80761769518ac84cafc7e357346f74d7e8497d10c4d894edab17",
+      "members": [
+        "ada-libs-4.0.0-r0.apk",
+        "brotli-libs-1.2.1-r0.apk",
+        "busybox-1.37.0-r31.apk",
+        "busybox-binsh-1.37.0-r31.apk",
+        "c-ares-1.34.9-r0.apk",
+        "ca-certificates-20261020-r0.apk",
+        "icu-data-en-78.1-r0.apk",
+        "icu-libs-78.1-r0.apk",
+        "libcrypto3-3.5.9-r0.apk",
+        "libgcc-15.2.0-r5.apk",
+        "libintl-1.0-r0.apk",
+        "libluv-1.51.0.1-r1.apk",
+        "libssl3-3.5.9-r0.apk",
+        "libstdc++-15.2.0-r5.apk",
+        "libuv-1.52.1-r0.apk",
+        "lua5.1-5.1.5-r13.apk",
+        "lua5.1-libs-5.1.5-r13.apk",
+        "lua5.1-lpeg-1.1.0-r1.apk",
+        "musl-1.2.6-r3.apk",
+        "neovim-0.12.2-r0.apk",
+        "nghttp2-libs-1.70.0-r0.apk",
+        "simdjson-4.2.4-r0.apk",
+        "simdutf-9.0.0-r0.apk",
+        "sqlite-libs-3.53.4-r0.apk",
+        "ssl_client-1.37.0-r31.apk",
+        "tree-sitter-0.26.7-r0.apk",
+        "tree-sitter-c-0.24.1-r0.apk",
+        "tree-sitter-lua-0.5.0-r0.apk",
+        "tree-sitter-markdown-0.5.3-r0.apk",
+        "tree-sitter-query-0.8.0-r0.apk",
+        "tree-sitter-vim-0.8.1-r0.apk",
+        "tree-sitter-vimdoc-4.1.0-r0.apk",
+        "unibilium-2.1.2-r0.apk",
+        "utf8proc-2.11.3-r0.apk",
+        "zlib-1.4-r0.apk",
+        "zstd-libs-1.5.7-r2.apk"
+      ]
+    },
+    {
+      "kind": "lsp",
+      "fileName": "x18n-lsp-riscv64-musl.tar.gz",
+      "guestName": "x18n-lsp.tar.gz",
+      "bytes": 12471446,
+      "sha256": "f56d016461a8d7015fd3184a67c0c8bd0c14d71896f8bdd43e123f74b9b7c4bd",
+      "entries": 4248,
+      "requiredPaths": [
+        "node_modules/@x18n/lsp/bin.mjs",
+        "node_modules/@x18n/lsp/package.json",
+        "node_modules/@oxc-parser/binding-linux-riscv64-musl"
+      ]
+    }
+  ]
+}

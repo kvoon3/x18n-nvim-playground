@@ -1,0 +1,29 @@
+{
+  "name": "x18n-playground",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "assets": "node scripts/assets.mjs",
+    "check": "node --test test/*.test.mjs",
+    "predev": "npm run assets",
+    "dev": "vite",
+    "build": "npm run assets && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && void deploy --dir dist --spa --platform cloudflare"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "0.11.0",
+    "@xterm/xterm": "6.0.0",
+    "unkernel": "0.1.0-261116-447d26f"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "void": "1.10.0"
+  }
+}

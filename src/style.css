@@ -1,0 +1,76 @@
+/* SPDX-License-Identifier: MIT */
+/* Copyright (C) 2026 kvoon3 */
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #0b0e14;
+  color: #d5d9e0;
+  font: 13px/1.4 ui-sans-serif, system-ui, sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #1c2230;
+}
+
+header strong {
+  font-weight: 600;
+}
+
+#status {
+  color: #8b949e;
+}
+
+.spacer {
+  flex: 1;
+}
+
+a {
+  color: #8ab4f8;
+  text-decoration: none;
+}
+
+button {
+  padding: 4px 10px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #161b22;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #21262d;
+}
+
+#terminal {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 3px 8px 10px;
+}
+
+#terminal .xterm {
+  height: 100%;
+}
+
+.xterm-viewport {
+  background: transparent !important;
+}
