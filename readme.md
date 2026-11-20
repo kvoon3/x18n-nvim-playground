@@ -1,4 +1,4 @@
-# x18n playground
+# x18n.nvim playground
 
 A minimal unkernel site for the x18n.nvim demo. It imports the `unkernel`
 npm SDK, boots the bundled Alpine kernel, pushes four tarballs, and runs
