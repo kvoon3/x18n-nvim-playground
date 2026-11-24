@@ -55,6 +55,8 @@ jobs:
     env:
       CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
+      - uses: actions/checkout@v4
+        if: env.CF_TOKEN != ''
       - uses: actions/download-artifact@v4
         if: env.CF_TOKEN != ''
         with:
@@ -71,6 +73,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: 28a23c2ec9aeeb01a95276f1d9ca42df
         run: |
+          set -o pipefail
           npx --yes wrangler@4.167.0 versions upload \
             --config preview.wrangler.jsonc \
             --tag "pr-${{ github.event.pull_request.number }}-${GITHUB_SHA::7}" | tee preview.log
