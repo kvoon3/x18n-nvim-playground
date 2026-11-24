@@ -4,8 +4,8 @@
 export const SITE = {
   "url": "/site.bin",
   "path": "demos/x18n/site.tar.gz",
-  "sha256": "c054450992f5c80128d5f6e29a9b986f7999a1973baef14739719d4c011d3d83",
-  "size": 34769
+  "sha256": "5abef767a858a4df5a15777243812b517425f888807beee643644343145014b5",
+  "size": 34721
 } as const;
 export const INSTALL = [
   {
@@ -17,8 +17,8 @@ export const INSTALL = [
   {
     "url": "/apk-repo-rest.bin",
     "path": "demos/x18n/apk-repo-rest.tar.gz",
-    "sha256": "1376902ecdef80761769518ac84cafc7e357346f74d7e8497d10c4d894edab17",
-    "size": 16631095
+    "sha256": "4482b23fea7f40690a8719fa8c859db7057448a907ddd327beee5d73a50f1827",
+    "size": 16631460
   },
   {
     "url": "/x18n-lsp.bin",
