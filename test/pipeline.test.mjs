@@ -17,9 +17,10 @@ import {
   walkFiles,
 } from '../scripts/lib.mjs';
 import { createTarGz } from '../scripts/tar.mjs';
-import { TARBALLS } from '../scripts/build-assets.mjs';
+import { tarballsFor } from '../scripts/build-assets.mjs';
 
 const DEMO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const AARCH64_TARBALLS = tarballsFor('aarch64');
 
 async function tempDir(t) {
   const dir = await mkdtemp(join(tmpdir(), 'x18n-demo-test-'));
@@ -32,11 +33,11 @@ function digestInput(overrides = {}) {
     lspVersion: '0.1.13',
     alpine: {
       release: 'v3.24',
-      arch: 'riscv64',
+      arch: 'aarch64',
       mirrors: ['https://dl-cdn.alpinelinux.org/alpine'],
     },
     packages: ['ada-libs-4.0.0-r0.apk', 'nodejs-24.22.3-r0.apk'],
-    tarballs: [TARBALLS.nodejs, TARBALLS.rest, TARBALLS.lsp],
+    tarballs: [AARCH64_TARBALLS.nodejs, AARCH64_TARBALLS.rest, AARCH64_TARBALLS.lsp],
     ...overrides,
   };
 }
@@ -58,7 +59,7 @@ test('asset digest is stable across package order and sensitive to every input',
   );
   assert.notEqual(
     digest,
-    computeAssetDigest({ ...base, tarballs: [TARBALLS.nodejs, TARBALLS.rest, { ...TARBALLS.lsp, fileName: 'x.tar.gz' }] }),
+    computeAssetDigest({ ...base, tarballs: [AARCH64_TARBALLS.nodejs, AARCH64_TARBALLS.rest, { ...AARCH64_TARBALLS.lsp, fileName: 'x.tar.gz' }] }),
   );
 });
 
@@ -150,7 +151,7 @@ test('the committed pins and package list are complete', async () => {
   assert.match(pins.unkernel.commit, /^[0-9a-f]{40}$/);
   assert.match(pins.kernel.sha256, /^[0-9a-f]{64}$/);
   const packages = await readPackages(DEMO_ROOT);
-  assert.equal(packages.length, 37);
+  assert.equal(packages.length, 35);
   assert.equal(packages.filter((name) => name.startsWith('nodejs-')).length, 1);
 });
 
@@ -163,13 +164,14 @@ test('asset-lock.json matches the current inputs when it exists', async (t) => {
   const lock = JSON.parse(await readFile(lockFile, 'utf8'));
   const pins = await loadPins(DEMO_ROOT);
   const packages = await readPackages(DEMO_ROOT);
+  const tarballs = tarballsFor(pins.alpine.arch);
   assert.equal(
     lock.inputsSha256,
     computeAssetDigest({
       lspVersion: lock.lspVersion,
       alpine: pins.alpine,
       packages,
-      tarballs: [TARBALLS.nodejs, TARBALLS.rest, TARBALLS.lsp],
+      tarballs: [tarballs.nodejs, tarballs.rest, tarballs.lsp],
     }),
   );
   assert.equal(lock.tarballs.length, 3);
@@ -178,7 +180,7 @@ test('asset-lock.json matches the current inputs when it exists', async (t) => {
     [
       ['apk-nodejs', 'nodejs-apk.tar.gz', 'nodejs-apk.tar.gz'],
       ['apk-rest', 'apk-repo-rest.tar.gz', 'apk-repo-rest.tar.gz'],
-      ['lsp', 'x18n-lsp-riscv64-musl.tar.gz', 'x18n-lsp.tar.gz'],
+      ['lsp', 'x18n-lsp-aarch64-musl.tar.gz', 'x18n-lsp.tar.gz'],
     ],
   );
   for (const entry of lock.tarballs) assert.match(entry.sha256, /^[0-9a-f]{64}$/);

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "assets": "node scripts/assets.mjs",
+    "packages": "node scripts/refresh-packages.mjs",
     "check": "node --test test/*.test.mjs",
     "predev": "npm run assets",
     "dev": "vite",

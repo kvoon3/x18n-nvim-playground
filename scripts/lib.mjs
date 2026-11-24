@@ -279,6 +279,15 @@ export async function cleanCompressed(dir) {
   return removed;
 }
 
+export const NPM_CPU = Object.freeze({ aarch64: 'arm64', riscv64: 'riscv64' });
+const SUPPORTED_ARCHES = Object.keys(NPM_CPU);
+
+export function npmCpuFor(arch) {
+  const cpu = NPM_CPU[arch];
+  if (!cpu) fail('preflight', `unsupported Alpine architecture ${JSON.stringify(arch)}; use ${SUPPORTED_ARCHES.join(' or ')}`);
+  return cpu;
+}
+
 export async function loadPins(demoRoot) {
   const file = join(demoRoot, 'pins.json');
   const pins = await readJson(file);
@@ -300,7 +309,9 @@ export async function loadPins(demoRoot) {
     }
   }
   if (!/^v\d+\.\d+$/.test(pins.alpine?.release ?? '')) bad('alpine.release must look like v3.24');
-  if (pins.alpine?.arch !== 'riscv64') bad('alpine.arch must be riscv64');
+  if (!SUPPORTED_ARCHES.includes(pins.alpine?.arch)) {
+    bad(`alpine.arch must be ${SUPPORTED_ARCHES.join(' or ')}`);
+  }
   return pins;
 }
 
