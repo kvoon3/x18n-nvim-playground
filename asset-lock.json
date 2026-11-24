@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputsSha256": "c614f76ff174b0897a25e4ba82746a3fb44fef8869e0b2ec92daedf8d77525b5",
+  "inputsSha256": "5f45bfaf54032a0440cab67358af4e26f2e2582bbf2edf29818ab661d4a81875",
   "lspVersion": "0.1.13",
   "alpine": {
     "release": "v3.24",
@@ -55,10 +55,10 @@
         "sha256": "69fe605744b3e36a6495ec85ce8ca642642a01a16218d5bd0014ab43b6288dfa"
       },
       {
-        "fileName": "libcrypto3-3.5.9-r0.apk",
+        "fileName": "libcrypto3-3.5.9-r1.apk",
         "repo": "main",
-        "bytes": 1657630,
-        "sha256": "c6d54d429a4edf7d08904be26c7ed6f4d5509f367b84f16982ec99aff26c1925"
+        "bytes": 1657737,
+        "sha256": "2c8c5b9cccab35a289c9b50cf4f68702af1f29602c5fefaef9f85ee7307867fd"
       },
       {
         "fileName": "libgcc-15.2.0-r5.apk",
@@ -79,10 +79,10 @@
         "sha256": "eff7d8cd4025841dff8cae53ee868d613f7eb9ce72a267778fddd02637ca55e5"
       },
       {
-        "fileName": "libssl3-3.5.9-r0.apk",
+        "fileName": "libssl3-3.5.9-r1.apk",
         "repo": "main",
-        "bytes": 386618,
-        "sha256": "3271613a205fea23db94fd26a50c489ca75cf7534d0dc6319f61c3db5aff564d"
+        "bytes": 386765,
+        "sha256": "c1f553217ad38402c58021ce2ce6d492bab887109f62d5217626c4a080c208a9"
       },
       {
         "fileName": "libstdc++-15.2.0-r5.apk",
@@ -245,8 +245,8 @@
       "kind": "apk-rest",
       "fileName": "apk-repo-rest.tar.gz",
       "guestName": "apk-repo-rest.tar.gz",
-      "bytes": 16631095,
-      "sha256": "1376902ecdef80761769518ac84cafc7e357346f74d7e8497d10c4d894edab17",
+      "bytes": 16631460,
+      "sha256": "4482b23fea7f40690a8719fa8c859db7057448a907ddd327beee5d73a50f1827",
       "members": [
         "ada-libs-4.0.0-r0.apk",
         "brotli-libs-1.2.1-r0.apk",
@@ -256,11 +256,11 @@
         "ca-certificates-20261020-r0.apk",
         "icu-data-en-78.1-r0.apk",
         "icu-libs-78.1-r0.apk",
-        "libcrypto3-3.5.9-r0.apk",
+        "libcrypto3-3.5.9-r1.apk",
         "libgcc-15.2.0-r5.apk",
         "libintl-1.0-r0.apk",
         "libluv-1.51.0.1-r1.apk",
-        "libssl3-3.5.9-r0.apk",
+        "libssl3-3.5.9-r1.apk",
         "libstdc++-15.2.0-r5.apk",
         "libuv-1.52.1-r0.apk",
         "lua5.1-5.1.5-r13.apk",
