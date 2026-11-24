@@ -19,7 +19,7 @@
   "dependencies": {
     "@xterm/addon-fit": "0.11.0",
     "@xterm/xterm": "6.0.0",
-    "unkernel": "0.1.0-261116-447d26f"
+    "unkernel": "0.2.0-261124-c08e977"
   },
   "devDependencies": {
     "typescript": "7.0.2",

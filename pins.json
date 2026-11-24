@@ -6,12 +6,12 @@
   },
   "unkernel": {
     "repo": "kvoon3/unkernel",
-    "commit": "3fd7021dc95138216f3c2ae1471bcedacce783a9",
+    "commit": "c08e97791caedb084f9e78b7a5baec73d641a9ec",
     "pnpm": "12.14.0"
   },
   "kernel": {
-    "release": "v0.1.0-261115-26d0873",
-    "sha256": "38ad4670c178ac2556973dbf84625b684d04a073856a0730637c71107b454643"
+    "release": "v0.2.0-261124-c08e977",
+    "sha256": "b11c542fbf1f84eafa50c0500b075a3a1978bf688d694c652e8e6822d8bfe43c"
   },
   "alpine": {
     "release": "v3.24",
