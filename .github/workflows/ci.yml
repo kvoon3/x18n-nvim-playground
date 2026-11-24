@@ -44,6 +44,54 @@ jobs:
           path: dist
           retention-days: 7
 
+  preview:
+    if: github.event_name == 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/download-artifact@v4
+        if: env.CF_TOKEN != ''
+        with:
+          name: site
+          path: dist
+      - name: Write isolation headers
+        if: env.CF_TOKEN != ''
+        run: |
+          printf '/*\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Embedder-Policy: require-corp\n' > dist/_headers
+      - name: Upload preview version
+        if: env.CF_TOKEN != ''
+        id: preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 28a23c2ec9aeeb01a95276f1d9ca42df
+        run: |
+          npx --yes wrangler@4.167.0 versions upload \
+            --config preview.wrangler.jsonc \
+            --tag "pr-${{ github.event.pull_request.number }}-${GITHUB_SHA::7}" | tee preview.log
+          url=$(grep -oE 'https://[^ ]+\.workers\.dev' preview.log | head -1)
+          if [ -z "$url" ]; then
+            echo '::error::wrangler printed no version preview URL; enable preview URLs on the x18n-nvim-play Worker'
+            exit 1
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+      - name: Comment the preview URL
+        if: env.CF_TOKEN != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          URL: ${{ steps.preview.outputs.url }}
+        run: |
+          gh pr comment "$PR" --edit-last --create-if-none --body "Preview: $URL"
+      - name: Skip preview
+        if: env.CF_TOKEN == ''
+        run: echo '::warning::CLOUDFLARE_API_TOKEN is not set, so this pull request has no preview deploy'
+
   deploy:
     if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy)
     needs: build
