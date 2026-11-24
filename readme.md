@@ -22,10 +22,10 @@ prebuilt install tarballs.
 ## Assets
 
 `pins.json` pins the plugin commit, the Alpine release, and the unkernel
-checkout. `packages.txt` lists the 37 Alpine packages; `lsp-lock` pins the
-`@x18n/lsp` production closure; `asset-lock.json` records every tarball's
-bytes and SHA-256. A normal build verifies the rebuilt tarballs against the
-lock.
+checkout. `packages.txt` lists the 35 aarch64 Alpine packages; `lsp-lock`
+pins the `@x18n/lsp` production closure; `asset-lock.json` records every
+tarball's bytes and SHA-256. A normal build verifies the rebuilt tarballs
+against the lock.
 
 ## Deploy
 

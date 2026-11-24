@@ -6,11 +6,14 @@ import { cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import { buildAssets } from './build-assets.mjs';
+import { buildAssets, tarballsFor } from './build-assets.mjs';
 import { checkoutPlugin } from './checkout-plugin.mjs';
+import { loadPins } from './lib.mjs';
 
 const run = promisify(execFile);
 const siteRoot = fileURLToPath(new URL('..', import.meta.url));
+const pins = await loadPins(siteRoot);
+const lspTarball = tarballsFor(pins.alpine.arch).lsp.fileName;
 const pluginRoot = process.env.X18N_NVIM
   ? resolve(process.env.X18N_NVIM)
   : await checkoutPlugin();
@@ -27,7 +30,7 @@ const stage = join(siteRoot, 'build/site');
 const ASSETS = [
   { source: 'nodejs-apk.tar.gz', guest: 'nodejs-apk.tar.gz', url: 'nodejs-apk.bin' },
   { source: 'apk-repo-rest.tar.gz', guest: 'apk-repo-rest.tar.gz', url: 'apk-repo-rest.bin' },
-  { source: 'x18n-lsp-riscv64-musl.tar.gz', guest: 'x18n-lsp.tar.gz', url: 'x18n-lsp.bin' },
+  { source: lspTarball, guest: 'x18n-lsp.tar.gz', url: 'x18n-lsp.bin' },
 ];
 
 const hash = async (path) => createHash('sha256').update(await readFile(path)).digest('hex');
@@ -63,20 +66,30 @@ await cp(join(siteRoot, 'guest/init.lua'), join(stage, 'config/nvim/init.lua'));
 
 const runSh = `#!/bin/sh
 set -e
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
 cd "$(dirname "$0")"
-printf '%s  nodejs-apk.tar.gz\\n%s  apk-repo-rest.tar.gz\\n%s  x18n-lsp.tar.gz\\n' ${install[0].sha256} ${install[1].sha256} ${install[2].sha256} | sha256sum -c -
-mkdir -p /opt/apk-repo/riscv64
-tar -xzf nodejs-apk.tar.gz -C /opt/apk-repo/riscv64
-tar -xzf apk-repo-rest.tar.gz -C /opt/apk-repo/riscv64
-apk index --rewrite-arch riscv64 -o /opt/apk-repo/riscv64/APKINDEX.tar.gz /opt/apk-repo/riscv64/*.apk
-echo /opt/apk-repo > /etc/apk/repositories
-apk add --allow-untrusted --no-network neovim nodejs
-mkdir -p /opt/x18n
-tar -xzf x18n-lsp.tar.gz -C /opt/x18n
-ln -sf /opt/x18n/node_modules/@x18n/lsp/bin.mjs /usr/local/bin/x18n-lsp
-chmod +x /opt/x18n/node_modules/@x18n/lsp/bin.mjs
+printf '%s  nodejs-apk.tar.gz\\n%s  apk-repo-rest.tar.gz\\n%s  x18n-lsp.tar.gz\\n' ${install[0].sha256} ${install[1].sha256} ${install[2].sha256} | busybox sha256sum -c -
+busybox mkdir -p /opt/apk-repo /opt/x18n-root /opt/x18n /lib /usr/local/bin
+busybox tar -xzf nodejs-apk.tar.gz -C /opt/apk-repo
+busybox tar -xzf apk-repo-rest.tar.gz -C /opt/apk-repo
+for apk in /opt/apk-repo/*.apk; do busybox tar -xzf "$apk" -C /opt/x18n-root; done
+# The extracted binaries name /lib/ld-musl-${pins.alpine.arch}.so.1 as their interpreter.
+busybox cp /opt/x18n-root/lib/ld-musl-*.so.1 /opt/x18n-root/lib/libc.musl-*.so.1 /lib/
+busybox mkdir -p /usr/lib
+# nvim links lpeg from /usr/lib/lua/5.1/lpeg.so.
+busybox ln -sfn /opt/x18n-root/usr/lib/lua /usr/lib/lua
+busybox tar -xzf x18n-lsp.tar.gz -C /opt/x18n
+# The package shebang is /usr/bin/env node, and this guest has no /usr/bin/env.
+printf '#!/bin/sh\\nexec /opt/x18n-root/usr/bin/node /opt/x18n/node_modules/@x18n/lsp/bin.mjs "$@"\\n' > /usr/local/bin/x18n-lsp
+busybox chmod +x /usr/local/bin/x18n-lsp
 echo __X18N_NVIM__
-XDG_CONFIG_HOME="$PWD/config" nvim
+export PATH=/opt/x18n-root/usr/bin:/opt/x18n-root/bin:$PATH
+export LD_LIBRARY_PATH=/opt/x18n-root/usr/lib:/opt/x18n-root/lib
+# The LSP matches \p{Emoji}, which fails unless Node finds the extracted ICU data.
+for data in /opt/x18n-root/usr/share/icu/*/icudt*.dat; do export NODE_ICU_DATA="\${data%/*}"; done
+export VIMRUNTIME=/opt/x18n-root/usr/share/nvim/runtime
+export XDG_CONFIG_HOME="$PWD/config"
+exec /opt/x18n-root/usr/bin/nvim
 `;
 await writeFile(join(stage, 'run.sh'), runSh, { mode: 0o755 });
 

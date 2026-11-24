@@ -2,7 +2,9 @@ import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   ensureDir,
+  loadPins,
   log,
+  npmCpuFor,
   readJson,
   readRootLspVersion,
   removePath,
@@ -12,10 +14,15 @@ import {
 } from './lib.mjs';
 
 const DEMO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const REPO_ROOT = resolve(DEMO_ROOT, '..', '..');
+const DEFAULT_PLUGIN_ROOT = process.env.X18N_NVIM
+  ? resolve(process.env.X18N_NVIM)
+  : join(DEMO_ROOT, 'build/plugin');
 
 const LSP_PACKAGE = '@x18n/lsp';
-const OXC_PACKAGE = '@oxc-parser/binding-linux-riscv64-musl';
+
+export function oxcPackage(arch) {
+  return `@oxc-parser/binding-linux-${npmCpuFor(arch)}-musl`;
+}
 
 export function lspClosurePackage(version) {
   return {
@@ -25,7 +32,11 @@ export function lspClosurePackage(version) {
   };
 }
 
-export async function refreshLspLock({ demoRoot = DEMO_ROOT, repoRoot = REPO_ROOT } = {}) {
+export async function refreshLspLock({ demoRoot = DEMO_ROOT, repoRoot = DEFAULT_PLUGIN_ROOT } = {}) {
+  const pins = await loadPins(demoRoot);
+  const arch = pins.alpine.arch;
+  const npmCpu = npmCpuFor(arch);
+  const oxc = oxcPackage(arch);
   const version = await readRootLspVersion(repoRoot);
   const workDir = join(demoRoot, 'build', 'lsp-refresh');
   const lockFile = join(demoRoot, 'lsp-lock', 'package-lock.json');
@@ -34,14 +45,14 @@ export async function refreshLspLock({ demoRoot = DEMO_ROOT, repoRoot = REPO_ROO
   await ensureDir(workDir);
   await writeJsonAtomic(join(workDir, 'package.json'), lspClosurePackage(version));
 
-  log('refresh', `resolving ${LSP_PACKAGE}@${version} for linux/riscv64/musl`);
+  log('refresh', `resolving ${LSP_PACKAGE}@${version} for linux/${arch}/musl`);
   await run(
     'npm',
     [
       'install',
       '--package-lock-only',
       '--os=linux',
-      '--cpu=riscv64',
+      `--cpu=${npmCpu}`,
       '--libc=musl',
       '--ignore-scripts',
       '--no-audit',
@@ -56,9 +67,9 @@ export async function refreshLspLock({ demoRoot = DEMO_ROOT, repoRoot = REPO_ROO
   if (installed !== version) {
     throw new Error(`the generated lock resolves ${LSP_PACKAGE} ${installed}, expected ${version}`);
   }
-  if (!lock.packages?.[`node_modules/${OXC_PACKAGE}`]) {
+  if (!lock.packages?.[`node_modules/${oxc}`]) {
     throw new Error(
-      `the generated lock has no ${OXC_PACKAGE}; npm did not record the riscv64/musl optional dependency`,
+      `the generated lock has no ${oxc}; npm did not record the ${arch}/musl optional dependency`,
     );
   }
 

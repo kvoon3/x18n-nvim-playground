@@ -15,7 +15,7 @@
   },
   "alpine": {
     "release": "v3.24",
-    "arch": "riscv64",
+    "arch": "aarch64",
     "mirrors": ["https://dl-cdn.alpinelinux.org/alpine"]
   }
 }

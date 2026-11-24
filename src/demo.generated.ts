@@ -4,26 +4,26 @@
 export const SITE = {
   "url": "/site.bin",
   "path": "demos/x18n/site.tar.gz",
-  "sha256": "5abef767a858a4df5a15777243812b517425f888807beee643644343145014b5",
-  "size": 34721
+  "sha256": "5a142195a78b7d53beac0d1f771b3291a7ee3561cd524477fb9fcefd32874be8",
+  "size": 35056
 } as const;
 export const INSTALL = [
   {
     "url": "/nodejs-apk.bin",
     "path": "demos/x18n/nodejs-apk.tar.gz",
-    "sha256": "a197056a82495e888bab4008e10c2f5785164d019b5f146b74a26786b6e61968",
-    "size": 18556116
+    "sha256": "e57914b6f7cdbcb85d48693d396c3c19ec02af821c142721ac066f0af6e6c878",
+    "size": 17882909
   },
   {
     "url": "/apk-repo-rest.bin",
     "path": "demos/x18n/apk-repo-rest.tar.gz",
-    "sha256": "4482b23fea7f40690a8719fa8c859db7057448a907ddd327beee5d73a50f1827",
-    "size": 16631460
+    "sha256": "20f626a700006e4d0344dee20d4a35db8821e0b3742dbf0cc1188a5c7f33b518",
+    "size": 17116720
   },
   {
     "url": "/x18n-lsp.bin",
     "path": "demos/x18n/x18n-lsp.tar.gz",
-    "sha256": "f56d016461a8d7015fd3184a67c0c8bd0c14d71896f8bdd43e123f74b9b7c4bd",
-    "size": 12471446
+    "sha256": "7bc88dd5926f39f3ee794797974209a60725aad90dc086d22a398ba11e2409e9",
+    "size": 12480859
   }
 ] as const;
